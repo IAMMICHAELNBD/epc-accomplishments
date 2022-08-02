@@ -1,3 +1,6 @@
+////// This project is used for security around our private websites, allowing verified customers/clients to enter while restricting outside traffic.
+////// Tag discrimination is allowing admins to restrict acess to certain "collections" based on customer/clients "tags".
+
 // Require Login
 {% unless customer %} // Does not apply if customer
       {% if template contains 'customers' %}

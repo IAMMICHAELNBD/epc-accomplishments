@@ -1,0 +1,23 @@
+// Require Login
+{% unless customer %} // Does not apply if customer
+      {% if template contains 'customers' %}
+      	{% assign send_to_login = false %}
+      {% else %}
+      	{% assign send_to_login = true %}
+      {% endif %}
+    {% endunless %}
+
+    {% if send_to_login and request.path != "/challenge" %} // Force Login for redirection.
+    	<meta content="0; url=/account/login" http-equiv="refresh" />
+    {% else %}
+<head></head>
+<body></body>
+
+{% endif %}
+
+// Customer Tag discrimination.
+{% if collection.title == 'Product Title' and customer.tags contains 'tag' %} // Checking Collection Title and Customer Tag
+<body></body>
+{% else %} // If the Product Title and Customer Tags to not match, customer does not have permission
+You do not have permission for this collection!
+{% endif %}

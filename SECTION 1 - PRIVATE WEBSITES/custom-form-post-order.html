@@ -1,0 +1,465 @@
+///// Custom form created for our private client, relaying information to a dedicated email group for processing. 
+
+
+<style>
+  
+  form{
+margin: auto; width: 500px;
+  }
+  
+  #textHead {
+    font-weight: bold;
+    padding-bottom: 8px;
+    padding-left: 5px;
+  }
+  
+  #configHead{
+    padding-bottom: 8px;
+    padding-left: 5px;
+    font-weight: bold;
+  }
+  .textarea {
+  background: white;
+  border-radius: 8px;
+  padding-left: 5px;
+  padding-top: -10px;
+  border: solid 1px lightgray;
+  transition: all 0.3s ease 0s;
+  max-width: 100%;
+}
+  
+  .textarea:hover {
+	box-shadow: 2px 6px 25px 2px rgba(10,10,120,0.15);
+    transform: translateZ(-15px);
+  }
+  
+	.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+    padding-bottom: 25px;
+    padding-top: 10px;
+    color: black;
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: #0F4B97;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
+.check {
+  bottom: 0;
+  display: flex;
+  left: calc(50% + 40px);
+  margin-bottom: 10px;
+}
+.containerOuter {
+  background: white;
+  border-radius: 8px;
+}
+.container {
+  position: relative;
+  margin: 20px;
+  overflow: visible;
+  width: 100px;
+}
+.hidden {
+  display: none;
+}
+.entry {
+  height: 25px;
+  position: absolute;
+  width: 160px;
+}
+.entry:nth-child(2) {
+  left: 8px;
+  top: 8px;
+}
+.entry:nth-child(4) {
+  left: 8px;
+  top: 58px;
+}
+.entry:nth-child(6) {
+  left: 8px;
+  top: 108px;
+}
+.circle {
+  border: 2px solid #545556;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 20px;
+  position: absolute;
+  transition: border-color 300ms;
+  width: 20px;
+}
+.entry-label {
+  cursor: pointer;
+  margin-top: -3px;
+  padding-left: 40px;
+  user-select: none;
+  -moz-user-select: none;
+}
+.overlay {
+  background: #fff;
+  mask: url(#holes);
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAACMCAYAAAAOc+uVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAItSURBVHic7ZnNjhJBFIVPA0txr0Iyw+tIdOXWaDRufZWZeYbZuMKOUV9Gg+HHGN/BHBcNcSBT1KVOEVycb0mq635UVd9U5zQkif+Y3rkFclhQxYIqFlQZiM8vALQAPgP4AWC1+X0E4ALAFMBzAOPiCixjRfIdyX5g/h7JFyTnJYVKBGckHxQsxJBke2rBK5LF55bdal6fSnCmyO1JhlcyKrhkwbYekBySXNcUfF1L7o7k20jhhsxetxYAJk3T/Kks2EfXmkaHxkXO1MfacgCwmbPNjYsIftV1knzJDYgIfqsgkuJ7bkBE8FcFkRTr3IBzXxay9SOCjyuIFM8dEZxUECmeOyL4tIJIimluQKRRLwFcnqBRDwDMUaFRjwG8quC0zxtk5ACEL6wrksNaZiQfkvwZKRxtM08AfGDgBh2Q6wG4BfAo+sAxXB/xp+6VI3lzTMGSK3/Lgu1mt62fji1W+tH0m+R7dm9iZNVeMnjm9om0mUOs8O+zc47dz84Juh76DJG3NYEqeHLOfVnIYkEVC6pYUMWCKhZUsaCKBVUsqGJBFQuqWFDFgipO3OnEfRcn7qWCTtxTOHFP4cS9Ek7cVZy4qzhxL4ZO3AXoxF2QoxP3DifuW5y4q1hQxYIqFlSxoIoFVSyoYkEVC6pYUMWCKhZUsaCKE3c6cd/FiXupoBP3FE7cUzhxr4QTdxUn7ipO3IuhE3cBOnEX5OjEvcOJ+xYn7ioWVLGgigVV/gKEL4RSyM8Z8wAAAABJRU5ErkJggg==);
+  height: 80px;
+  pointer-events: none;
+  transition: background 300ms;
+  width: 40px;
+}
+
+.highlight {
+  background: #4D98EF;
+  border-radius: 50%;
+  height: 12px;
+  left: 14px;
+  pointer-events: none;
+  position: absolute;
+  top: 14px;
+  transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  transform: translateY(-50px);
+  width: 12px;
+}
+  
+.hidden:nth-child(1):checked ~ .highlight {
+  transform: translateY(0);
+}
+.hidden:nth-child(3):checked ~ .highlight {
+  transform: translateY(50px);
+}
+.hidden:nth-child(5):checked ~ .highlight {
+  transform: translateY(100px);
+}
+.hidden:nth-child(1):checked + .entry .circle {
+  border-color: #4D98EF;
+}
+.hidden:nth-child(3):checked + .entry .circle {
+  border-color: #4D98EF;
+}
+.hidden:nth-child(5):checked + .entry .circle {
+  border-color: #4D98EF;
+}
+.check:checked ~ .containerOuter .overlay {
+  background: #ecf0f4;
+}
+ 
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+.container1 {
+  margin-top: 75px;
+  width: 400px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: normal;
+}
+
+.center {
+  width: 180px;
+  height: 60px;
+  position: relative;
+}
+
+.btn {
+  width: 180px;
+  height: 60px;
+  cursor: pointer;
+  background: lightgray;
+  border: 1px solid #0F4B97;
+  outline: none;
+  transition: 1s ease-in-out;
+  white-space: normal;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+  white-space: normal;
+}
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: lightgray;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn span {
+  color: #0F4B97;
+  font-size: 18px;
+  font-weight: 100;
+}
+</style>
+
+<form action="https" method="post">
+  <div class="section1">
+    <div class="strike">
+      <span>LAB SERVICES</span>
+      </div>
+    <div id="textHead">Would you like to request lab services from our technology center?</div>
+<div class="containerOuter">
+  <div class="container">
+    <input type="radio" class="hidden" id="input1" name="inputs" data-label="Would you like to request lab services from our technology center?" value="No">
+    <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">No</div></label>
+    <input type="radio" class="hidden" id="input2" name="inputs" checked="checked" data-label="Would you like to request lab services from our technology center?" value="Yes">
+    <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">Yes</div></label>
+    <div class="highlight"></div>
+    <div class="overlay"></div>
+  </div>
+</div>
+<svg width="0" height="0" viewBox="0 0 40 140">
+  <defs>
+    <mask id="holes">
+      <rect x="0" y="0" width="100" height="140" fill="white" />
+      <circle r="12" cx="20" cy="20" fill="black"/>
+      <circle r="12" cx="20" cy="70" fill="black"/>
+      <circle r="12" cx="20" cy="120" fill="black"/>
+    </mask>
+  </defs>
+</svg>
+    <div id="box" class="config">
+      <p id="textHead">Lab Configuration Instructions</p>
+    <textarea class="textarea" name="config-instructions" cols="75" rows="5" data-label="Lab Configuration Instructions">Combine with order #[Y/N]:
+Engineer Email:
+Requester Email:
+PM Email:
+</textarea>
+    </div>
+  </div>
+  <div class="strike">
+      <span>SHIPPING</span>
+      </div>
+  <div>
+    <p>
+        <b>Ship To Address</b> <!-- (Add API call for address lookup here) -->
+    </p>
+    <p>
+      {% assign order = customer.orders | first %}
+      <textarea type="textarea" class="textarea" name="shipping-search" cols="75" rows="6">Street 1: {{ order.billing_address.address1 }}
+Street 2: {{ order.billing_address.address2 }}
+City: {{ order.billing_address.city }}
+State: {{ order.billing_address.province }}
+Zip Code: {{ order.billing_address.zip }}</textarea>
+    </p>
+    <p>
+        <b>Shipping Instructions</b><br /> <sub>Provide any specific shipping requirements for your order.</sub></p>
+    <p>
+        <textarea class="textarea" name="ship-instructions" cols="75" rows="4" placeholder="Example: Forklift driver, proof of insurance required, etc" data-label="Shipping Instructions"></textarea>
+    </p>
+    <p>
+        <b>Shipping Method</b>
+    </p>
+    <p>
+        <label for="ship-method" class="textarea">
+            <select name="shipping-method" id="ship-method" width="25px" data-label="Shipping Method">
+    <option value="UPS Ground">UPS Ground</option>
+    <option value="Fedex Ground">Fedex Ground</option>
+    </select>
+</label>
+</p>
+    <b>Requested Arrival Date</b>
+    <p>
+        <sub>Your order's request date may be based on pre-defined working days and service level agreements related to this store</sub>
+    </p>
+    <input type="date" class="textarea" name="arrival" data-label="Requested Arrival Date"/>
+    <p>
+        <b>Ship To Contact</b> <!-- (Add API call for contact lookup here if can't integrate it into ship to address - Contact Email / Phone #) -->
+        <br /> <sub>Main point of contact for the delivery of your order.</sub>
+    </p>
+    <p>
+        <input type="search" class="textarea" name="shipping-contact" placeholder="Search Contact" data-label="Ship To Contact" />
+    </p>
+  </div>
+    <div class="strike">
+      <span>BILLING</span>
+      </div>
+    <label for="billing">
+        <b>PO Number</b>
+        <br /> 
+    </label> 
+    <sub>Point of reference for your order.</sub>
+    <p>
+       {% assign mostRecentOrder = customer.orders[0] %}
+      <textarea class="textarea" name="po-number" cols="25" rows="1" data-label="PO Number">{{ mostRecentOrder.order_name }}</textarea>
+    </p>
+  <div class="strike">
+      <span>ORDER INFORMATION</span>
+      </div>
+    <label for="order-info">
+         <b>Ordered By Contact</b>
+         <br /> 
+        </label> 
+        <sub>This contact will receive a confirmation email and order status notifications depending on store access and preferences.</sub>
+    <p>
+{{ customer.name }} | {{ customer.email }}    
+    </p>
+    <label for="additional-email"> 
+        <b>Additional Confirmation Email Recipients</b>
+        <br /> 
+    </label> 
+    <sub>Add additional email recipients here</sub>
+    <p>
+        <textarea class="textarea" id="additionalEmails" name="add-email" cols="75" rows="1" placeholder="Seperate with a &quot; ; &quot; for multiple addresses" data-label="Additional Confirmation Email Recipients"></textarea>
+    </p>
+    <p>
+        <label for="reference-number"> 
+            <b>Customer Reference Number</b>
+            <br /> 
+            <sub>Add any additional order identiying reference numbers</sub> 
+        </label>
+    </p>
+    <p>
+      <textarea class="textarea" name="reference-number" cols="25" rows="1" data-label="Customer Reference Number"></textarea>
+    </p>
+  <div class="container1">
+    <div class="center">
+      <button class="btn" id='Submit'>
+        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+        </svg>
+        <span>SUBMIT</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).ready(function(){
+    
+    // Not going wild with this RegX 
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    
+    
+  	$("#input1").click(function(){
+	    $("#box").slideUp("slow");
+  	});
+    $("#input2").click(function(){
+    	$("#box").slideDown("slow");
+  	});
+    
+    // Start Dev Group Changes
+    $("#Submit").on('click', function(e){
+      
+      	// We don't want this to submit the form so stopping it here
+      	e.stopPropagation();      
+      	e.preventDefault();
+      	
+      	var valid = true;
+      	var baseURl = "https://api.iinvision.com";
+      	      	
+      
+      	// Development URL      	
+      	// var baseURl = "https://api.development.iinvision.com";
+      
+      	var path = "/Email/Send";
+        
+        var payload = {};
+      	payload.authToken = "(hidden for security)";
+      	payload.to = "(hidden for security)";
+      	payload.replyTo = "(hidden for security)";
+        payload.subject = "(hidden for security) {{ mostRecentOrder.order_name }}"; // Pulls clients related order automatically into email subject.     	
+        var message = "";      
+      
+      
+      	var inputs = $('input, textarea, select')
+                .not(':input[type=button], :input[type=submit], :input[type=reset], :input[type=radio]:not(:checked)');
+      	
+        $(inputs).each(function(index, obj){
+          var value = $(obj).val();
+          var name = $(obj).data('label');          
+          // If an input doesn't have a data-label we will not include it in the email
+          if(name){
+            message += "<b>" + name + "</b><br/>" + value + "<br/><br/>";                        
+          }        
+        });
+      	payload.message = message;
+      
+      
+      	// Add any additional emails to the to list 
+      	var additionalEmails = $('#additionalEmails').val().trim();      	
+      	if(additionalEmails){
+          var additionalEmailsList = additionalEmails.split(';');          
+          
+          $(additionalEmailsList).each(function(index, additionalEmail){
+			if(validateEmail(additionalEmail)){
+            	payload.to += ";" + additionalEmail;
+            }else{
+            	alert(additionalEmail + " is not a valid email");              	
+              	valid = false;
+            }
+          });                            
+      	}
+
+      	var url = baseURl + path;
+      	console.log(url, payload);
+      
+      	$.ajax({
+       	 	url: url,
+        	method: 'POST',
+        	dataType: 'json',
+            data: payload,
+        	success: function(res) {
+            alert('Thanks for your submission')
+            location.href = "https://deals.epcusa.com/pages/wf";
+        	},
+          	error:function (jqXHR, exception) {
+              	alert("An error occured");
+              	console.error("An error occured");
+    			console.log(jqXHR.status);
+  			}
+    	});
+
+      	// Send the call via ajax       
+    	console.log("Testing");
+      
+    });
+    // End Dev Group Changes
+    
+});
+  
+     
+  
+</script>

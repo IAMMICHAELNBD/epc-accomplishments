@@ -12,6 +12,7 @@ Please see below.
 
 
 -- SECTION 2 - Main Website (epcglobal.shop) --
+1. Logo-List
 
 
 
@@ -19,5 +20,4 @@ Please see below.
 
 
 
-
-This repository is currently up to date as of 8/2/22.
+This repository is currently up to date as of 8/3/22.

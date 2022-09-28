@@ -1,0 +1,10 @@
+// Restricts Customers from accessing product that they are not assigned too.
+
+{% if product.tags contains 'EXP' %}
+  {% unless customer and customer.tags contains 'EXP' %}
+  <script>
+    alert('You do not have permission for this product! If you feel that this is an error please reach out to your account manager!')
+    window.location = '/'
+  </script>
+  {% endunless %}
+{% endif %}

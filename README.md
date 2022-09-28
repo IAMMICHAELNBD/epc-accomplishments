@@ -5,20 +5,7 @@ Further description of each project is listed within the project file itself.
 Please see below.
 
 -- SECTION 1 - Private Websites for Redeployment --
-1. Independent-login-with-customer-specific-catalogs
-2. Account-Page
-3. Order-History
-4. Custom-Form-Post-Order
-
-
 
 -- SECTION 2 - Main Website (epcglobal.shop) --
-1. Logo-List
-
-
-
-
-
-
 
 This repository is currently up to date as of 9/28/22.

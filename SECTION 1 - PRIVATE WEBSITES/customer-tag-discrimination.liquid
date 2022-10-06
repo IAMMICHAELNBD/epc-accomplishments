@@ -1,0 +1,12 @@
+// Customer Tag discrimination.
+
+ // Checking Collection Title and Customer Tag
+{% if collection.handle == 'laptops' %}
+  {% unless customer and customer.tags contains 'laptop' %}
+  <script>
+    alert('You do not have permission for this collection!')
+    window.location = '/'
+  </script>
+  {% endunless %}
+{% endif %}
+    <body></body>

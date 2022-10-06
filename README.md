@@ -8,4 +8,4 @@ Please see below.
 
 -- SECTION 2 - Main Website (epcglobal.shop) --
 
-This repository is currently up to date as of 9/28/22.
+This repository is currently up to date as of 10/05/22.
